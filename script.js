@@ -1,26 +1,32 @@
-let garden = document.getElementById('garden');
+let garden = document.getElementById("garden");
 let points = 0;
 let selectedTask = null;
-let taskMenu = document.getElementById('task-menu');
+let taskMenu = document.getElementById("task-menu");
 
 let pendingTask = false;
-let pendingTaskName = '';
-let pendingColor = 'white';
+let pendingTaskName = "";
+let pendingColor = "white";
 let pendingCost = 0;
 
 function updatePointsDisplay() {
-  document.getElementById('points').innerText = 'Points: ' + points;
+  document.getElementById("points").innerText = "Points: " + points;
 }
 
 function createTask() {
   const name = prompt("Enter your task name:");
   if (!name) return;
   pendingTaskName = name;
-  pendingColor = 'white';
+  pendingColor = "white"; // Default to white task
   pendingCost = 0;
   pendingTask = true;
-  garden.style.cursor = 'crosshair';
-  task.style.backgroundColor = selectedColor;
+  garden.style.cursor = "crosshair";
+
+  // Reset all button text colors before setting white text color
+  resetButtonTextColors();
+
+  // Set the white task button text color to black
+  const whiteButton = document.getElementById("white");
+  whiteButton.style.color = "#000000";
 }
 
 function selectTaskColor(color, cost) {
@@ -36,11 +42,26 @@ function selectTaskColor(color, cost) {
   pendingColor = color;
   pendingCost = cost;
   pendingTask = true;
-  garden.style.cursor = 'crosshair';
+  garden.style.cursor = "crosshair";
+
+  // Reset all button text colors before setting the selected color
+  resetButtonTextColors();
+
+  // Set the selected button text color to black based on the selected task color
+  const selectedButton = document.querySelector(`.plant-option.${color}`);
+  selectedButton.style.color = "#000000";
 }
 
-garden.addEventListener('click', function (e) {
-  if (e.target.classList.contains('task')) return;
+// Function to reset the button text colors
+function resetButtonTextColors() {
+  const buttons = document.querySelectorAll(".plant-option");
+  buttons.forEach((button) => {
+    button.style.color = "#FFFFFF"; // Reset to default text color
+  });
+}
+
+garden.addEventListener("click", function (e) {
+  if (e.target.classList.contains("task")) return;
   hideMenu();
 
   const rect = garden.getBoundingClientRect();
@@ -62,7 +83,7 @@ garden.addEventListener('click', function (e) {
       relX: x / rect.width,
       relY: y / rect.height,
       points: pendingCost > 0 ? pendingCost : 10,
-      grown: false
+      grown: false,
     };
 
     createTaskElement(taskData, rect);
@@ -72,18 +93,18 @@ garden.addEventListener('click', function (e) {
 
     // Reset
     pendingTask = false;
-    pendingTaskName = '';
-    pendingColor = 'white';
+    pendingTaskName = "";
+    pendingColor = "white";
     pendingCost = 0;
-    garden.style.cursor = 'default';
+    garden.style.cursor = "default";
   }
 });
 
 function createTaskElement(data, rect) {
-  const task = document.createElement('div');
-  task.className = 'task';
-  task.innerText = data.name + (data.grown ? ' (Grown)' : '');
-  if (data.grown) task.classList.add('grown');
+  const task = document.createElement("div");
+  task.className = "task";
+  task.innerText = data.name + (data.grown ? " (Grown)" : "");
+  if (data.grown) task.classList.add("grown");
   task.style.backgroundColor = data.color;
   task.style.left = `${rect.width * data.relX}px`;
   task.style.top = `${rect.height * data.relY}px`;
@@ -94,7 +115,7 @@ function createTaskElement(data, rect) {
   task.dataset.color = data.color;
   task.dataset.grown = data.grown;
 
-  task.addEventListener('click', (e) => {
+  task.addEventListener("click", (e) => {
     e.stopPropagation();
     showMenu(task);
   });
@@ -106,29 +127,34 @@ function showMenu(task) {
   selectedTask = task;
   taskMenu.style.left = task.style.left;
   taskMenu.style.top = task.style.top;
-  taskMenu.classList.remove('hidden');
+  taskMenu.classList.remove("hidden");
 }
 
 function hideMenu() {
   selectedTask = null;
-  taskMenu.classList.add('hidden');
+  taskMenu.classList.add("hidden");
 }
 
 function editTask() {
   if (!selectedTask) return;
-  const newName = prompt('Edit Task Name:', selectedTask.innerText.replace(' (Grown)', ''));
+  const newName = prompt(
+    "Edit Task Name:",
+    selectedTask.innerText.replace(" (Grown)", "")
+  );
   if (newName) {
-    selectedTask.innerText = selectedTask.classList.contains('grown') ? newName + ' (Grown)' : newName;
+    selectedTask.innerText = selectedTask.classList.contains("grown")
+      ? newName + " (Grown)"
+      : newName;
   }
   saveTasks();
   hideMenu();
 }
 
 function completeTask() {
-  if (!selectedTask || selectedTask.classList.contains('grown')) return;
-  selectedTask.classList.add('grown');
-  selectedTask.innerText = selectedTask.dataset.name + ' (Grown)';
-  const gain = parseInt(selectedTask.dataset.pointsOnComplete || '10');
+  if (!selectedTask || selectedTask.classList.contains("grown")) return;
+  selectedTask.classList.add("grown");
+  selectedTask.innerText = selectedTask.dataset.name + " (Grown)";
+  const gain = parseInt(selectedTask.dataset.pointsOnComplete || "10");
   points += gain;
   updatePointsDisplay();
   saveTasks();
@@ -143,29 +169,29 @@ function removeTask() {
 }
 
 function saveTasks() {
-  const tasks = document.querySelectorAll('.task');
+  const tasks = document.querySelectorAll(".task");
   const rect = garden.getBoundingClientRect();
-  const taskData = Array.from(tasks).map(task => ({
+  const taskData = Array.from(tasks).map((task) => ({
     name: task.dataset.name,
     color: task.dataset.color,
     relX: parseFloat(task.dataset.relativeX),
     relY: parseFloat(task.dataset.relativeY),
     points: parseInt(task.dataset.pointsOnComplete),
-    grown: task.classList.contains('grown')
+    grown: task.classList.contains("grown"),
   }));
 
-  localStorage.setItem('taskGardenTasks', JSON.stringify(taskData));
-  localStorage.setItem('taskGardenPoints', points.toString());
+  localStorage.setItem("taskGardenTasks", JSON.stringify(taskData));
+  localStorage.setItem("taskGardenPoints", points.toString());
 }
 
 function loadTasks() {
   const rect = garden.getBoundingClientRect();
-  const stored = localStorage.getItem('taskGardenTasks');
-  const storedPoints = localStorage.getItem('taskGardenPoints');
+  const stored = localStorage.getItem("taskGardenTasks");
+  const storedPoints = localStorage.getItem("taskGardenPoints");
 
   if (stored) {
     const taskList = JSON.parse(stored);
-    taskList.forEach(data => createTaskElement(data, rect));
+    taskList.forEach((data) => createTaskElement(data, rect));
   }
 
   if (storedPoints) {
@@ -174,12 +200,12 @@ function loadTasks() {
   }
 }
 
-document.addEventListener('click', hideMenu);
+document.addEventListener("click", hideMenu);
 
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   const rect = garden.getBoundingClientRect();
-  const tasks = document.querySelectorAll('.task');
-  tasks.forEach(task => {
+  const tasks = document.querySelectorAll(".task");
+  tasks.forEach((task) => {
     const relX = parseFloat(task.dataset.relativeX);
     const relY = parseFloat(task.dataset.relativeY);
     task.style.left = `${rect.width * relX}px`;
