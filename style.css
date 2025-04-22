@@ -1,0 +1,64 @@
+body {
+  font-family: National Park, sans-serif;
+  text-align: center;
+  background-color: #e5f9e0;
+  margin: 0;
+  padding: 0;
+}
+
+.toolbar {
+  font-family: National Park, sans-serif;
+  background: #b4d7a8;
+  padding: 10px;
+}
+
+.plant-bar {
+  font-family: National Park, sans-serif;
+  background: #eef5dd;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.plant-option {
+  font-family: National Park, sans-serif;
+  padding: 8px 12px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.plant-option.red { background-color: #aa0000; }
+.plant-option.blue { background-color: #0055aa; }
+.plant-option.yellow { background-color: #cfa600; }
+.plant-option.darkgreen { background-color: #004d00; }
+
+.garden {
+  width: 90vw;
+  height: 65vh;
+  margin: 20px auto;
+  background: #d0f0c0;
+  position: relative;
+  border: 2px solid #6b8e23;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.task {
+  position: absolute;
+  padding: 10px;
+  width: 80px;
+  height: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}

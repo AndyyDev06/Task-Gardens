@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Gardens</title>
+  <link rel="stylesheet" href="style.css" id="light-theme">
+  <link rel="stylesheet" href="style2.css" id="dark-theme" disabled>
+</head>
+<body>
+	<div id="app">
+	  <h1>Task Gardens</h1>
+	
+	  <div class="toolbar">
+	    <button onclick="createTask()">Add Task (White)</button>
+	    <span id="points">Points: 0</span>
+		<button id="toggle-theme">Toggle Theme</button>
+	  </div>
+	
+	  <div class="plant-bar">
+	    <button class="plant-option red" onclick="selectTaskColor('red', 5)">Red Task (5)</button>
+	    <button class="plant-option blue" onclick="selectTaskColor('blue', 10)">Blue Task (10)</button>
+	    <button class="plant-option yellow" onclick="selectTaskColor('goldenrod', 15)">Yellow Task (15)</button>
+	    <button class="plant-option darkgreen" onclick="selectTaskColor('darkgreen', 20)">Dark Green Task (20)</button>
+	  </div>
+	
+	  <div id="garden" class="garden"></div>
+	
+	  <!-- Task Menu -->
+	  <div id="task-menu" class="task-menu hidden">
+	    <button onclick="editTask()">Edit</button>
+	    <button onclick="completeTask()">Complete</button>
+	    <button onclick="removeTask()">Remove</button>
+	  </div>
+	</div>
+
+  <script src="anim.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
