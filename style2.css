@@ -15,10 +15,14 @@ body {
 
 .title {
   text-align: center;
+  margin-bottom: 35px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: xxx-large;
 }
 
 .toolbar {
   text-align: center;
+  font-weight: bold;
 }
 
 #white {
