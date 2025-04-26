@@ -103,7 +103,7 @@ garden.addEventListener("click", function (e) {
 function createTaskElement(data, rect) {
   const task = document.createElement("div");
   task.className = "task";
-  task.innerText = data.name + (data.grown ? " (Grown)" : "");
+  task.innerText = data.name + (data.grown ? " (✓)" : "");
   if (data.grown) task.classList.add("grown");
   task.style.backgroundColor = data.color;
   task.style.left = `${rect.width * data.relX}px`;
@@ -139,11 +139,11 @@ function editTask() {
   if (!selectedTask) return;
   const newName = prompt(
     "Edit Task Name:",
-    selectedTask.innerText.replace(" (Grown)", "")
+    selectedTask.innerText.replace(" (✓)", "")
   );
   if (newName) {
     selectedTask.innerText = selectedTask.classList.contains("grown")
-      ? newName + " (Grown)"
+      ? newName + " (✓)"
       : newName;
   }
   saveTasks();
@@ -153,7 +153,7 @@ function editTask() {
 function completeTask() {
   if (!selectedTask || selectedTask.classList.contains("grown")) return;
   selectedTask.classList.add("grown");
-  selectedTask.innerText = selectedTask.dataset.name + " (Grown)";
+  selectedTask.innerText = selectedTask.dataset.name + " (✓)";
   const gain = parseInt(selectedTask.dataset.pointsOnComplete || "10");
   points += gain;
   updatePointsDisplay();
