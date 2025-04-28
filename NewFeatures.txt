@@ -1,0 +1,10 @@
+FIX THE POINTS MULTIPLIER SYSTEM
+
+Fix Animations for changing themes
+
+Add a color wheel
+	all for saving of favorite colors
+	
+Allow Photo Backgrounds
+
+Fix text color for white tasks, still cant fix it after 7 tries...
