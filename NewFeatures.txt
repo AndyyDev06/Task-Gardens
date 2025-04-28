@@ -7,4 +7,4 @@ Add a color wheel
 	
 Allow Photo Backgrounds
 
-Fix text color for white tasks, still cant fix it after 7 tries...
+Fix Garden Centering on the screen.
