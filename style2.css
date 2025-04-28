@@ -60,6 +60,11 @@ body {
   user-select: none;
   transition: transform 0.2s;
 }
+
+.task.white {
+  color: black;
+}
+
 .task:hover {
   transform: scale(1.05);
 }
@@ -178,6 +183,13 @@ button.color-button:hover {
   box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
 }
 
+.plant-option.white {
+  background-color: #ffffff;
+  color: #000000;
+}
+.plant-option.white:hover {
+  background-color: #e6e6e6;
+}
 .plant-option.red {
   background-color: #c0392b;
 }
@@ -190,3 +202,4 @@ button.color-button:hover {
 .plant-option.darkgreen {
   background-color: #145214;
 }
+

@@ -12,31 +12,27 @@
       <h1 class="title">.🪴.</h1>
 
       <div class="toolbar">
-        <button id="white" onclick="createTask()">Add Task</button>
-        <span id="points">Points: 0</span>
-        <button id="toggle-theme">Toggle Theme</button>
-      </div>
+  <span id="points">Points: 0</span>
+  <button id="toggle-theme">Toggle Theme</button>
+</div>
 
-      <div class="plant-bar">
-        <button class="plant-option red" onclick="selectTaskColor('red', 5)">
-          Red Task (5)
-        </button>
-        <button class="plant-option blue" onclick="selectTaskColor('blue', 10)">
-          Blue Task (10)
-        </button>
-        <button
-          class="plant-option yellow"
-          onclick="selectTaskColor('goldenrod', 15)"
-        >
-          Yellow Task (15)
-        </button>
-        <button
-          class="plant-option darkgreen"
-          onclick="selectTaskColor('darkgreen', 20)"
-        >
-          Dark Green Task (20)
-        </button>
-      </div>
+<div class="plant-bar">
+  <button class="plant-option white" onclick="selectTaskColor('white', 0)">
+    White Task (0)
+  </button>
+  <button class="plant-option red" onclick="selectTaskColor('red', 5)">
+    Red Task (5)
+  </button>
+  <button class="plant-option blue" onclick="selectTaskColor('blue', 10)">
+    Blue Task (10)
+  </button>
+  <button class="plant-option yellow" onclick="selectTaskColor('goldenrod', 15)">
+    Yellow Task (15)
+  </button>
+  <button class="plant-option darkgreen" onclick="selectTaskColor('darkgreen', 20)">
+    Dark Green Task (20)
+  </button>
+</div>
 
       <div id="garden" class="garden"></div>
 
