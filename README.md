@@ -16,9 +16,8 @@ Built with **HTML, CSS, and JavaScript**, Task Gardens blends simplicity with sa
 - 🌘 **Light/Dark Mode** — Seamless theme toggle with smooth animations.
 - 🧩 **Custom Task Menu** — Click on any plant to Edit, Grow (Complete), or Remove it.
 - 🔒 **Planned Features** (future builds):
-  - Wilting for neglected tasks
   - Seasonal garden themes
-  - In-app purchase (IAP) garden styles
+  - In-app purchase (IAP) Garden Styles!
   - Watering and animations
   - Multiplayer or shared gardens
 
