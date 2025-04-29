@@ -214,36 +214,39 @@ button.color-button:hover {
 #garden-name-input {
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #aaa;
+  border: 2px solid #b9b9b9;
   width: 250px;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #000;
+  background-color: #ffffff;
+  color: #000000;
   font-size: 16px;
+  font-weight: 600;
 }
 
 #garden-name-input::placeholder {
-  color: #666;
+  color: #00063a;
 }
 
 #create-btn {
   padding: 10px 16px;
   border-radius: 8px;
   border: none;
-  background-color: #88c999;
+  background-color: #292e3d;
   color: white;
-  font-weight: bold;
+  font-size: 15;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 #create-btn:hover {
-  background-color: #76b88a;
+  background-color: #5d946d;
 }
 
 ul#garden-list li {
   margin: 6px 0;
   display: flex;
   align-items: center;
+  text-align: center;
   justify-content: space-between;
   gap: 10px;
   background-color: rgba(255, 255, 255, 0.07);
@@ -253,14 +256,17 @@ ul#garden-list li {
 
 ul#garden-list li {
   margin: 6px 0;
+  align-items: center;
+  text-align: center;
 }
 
 ul#garden-list a {
-  color: #3498db;
+  color: #000000;
   font-weight: 600;
   text-decoration: none;
 }
 ul#garden-list a:hover {
+  transform: translateY(-2px);
   text-decoration: underline;
 }
 
@@ -281,13 +287,13 @@ ul#garden-list a:hover {
 }
 
 .delete-btn {
-  background-color: #e74c3c;
+  background-color: #eb3723;
   color: white;
   border: none;
   border-radius: 8px;
   padding: 6px 12px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   transition: background-color 0.2s;
 }
