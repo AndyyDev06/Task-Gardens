@@ -25,5 +25,6 @@ Built with **HTML, CSS, and JavaScript**, Task Gardens blends simplicity with sa
 
 ## 📸 Screenshots
 
-> Add screenshots here when available.
 
+![Screenshot 2025-04-29 161421](https://github.com/user-attachments/assets/b9ef3c1a-8c51-4c7a-b0ed-91b37959e73c)
+![Screenshot 2025-04-29 161446](https://github.com/user-attachments/assets/8dac1cf8-e894-47bb-8fff-bec659ce5811)
