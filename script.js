@@ -1,3 +1,9 @@
+const urlParams = new URLSearchParams(window.location.search);
+const gardenName = urlParams.get("garden") || "default";
+
+const TASKS_KEY = `taskGardenTasks__${gardenName}`;
+const POINTS_KEY = `taskGardenPoints__${gardenName}`;
+
 let garden = document.getElementById("garden");
 let points = 0;
 let selectedTask = null;
@@ -186,14 +192,14 @@ function saveTasks() {
     grown: task.classList.contains("grown"),
   }));
 
-  localStorage.setItem("taskGardenTasks", JSON.stringify(taskData));
-  localStorage.setItem("taskGardenPoints", points.toString());
+  localStorage.setItem(TASKS_KEY, JSON.stringify(taskData));
+  localStorage.setItem(POINTS_KEY, points.toString());
 }
 
 function loadTasks() {
   const rect = garden.getBoundingClientRect();
-  const stored = localStorage.getItem("taskGardenTasks");
-  const storedPoints = localStorage.getItem("taskGardenPoints");
+  const stored = localStorage.getItem(TASKS_KEY);
+  const storedPoints = localStorage.getItem(POINTS_KEY);
 
   if (stored) {
     const taskList = JSON.parse(stored);

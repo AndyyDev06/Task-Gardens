@@ -15,6 +15,12 @@ body {
   scroll-behavior: smooth;
 }
 
+.logo {
+  margin-top: 10px;
+  text-align: center;
+  font-size: xxx-large;
+}
+
 .title {
   text-align: center;
   margin-bottom: 35px;
@@ -203,4 +209,99 @@ button.color-button:hover {
 }
 .plant-option.darkgreen {
   background-color: #228b22;
+}
+
+#main-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+#garden-name-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+  width: 250px;
+  background-color: #292e3d;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#garden-name-input::placeholder {
+  color: #ffffff;
+}
+
+#create-btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #292e3d;
+  color: white;
+  font-size: 16;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#create-btn:hover {
+  background-color: #5d946d;
+}
+
+ul#garden-list li {
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.07);
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+ul#garden-list li {
+  margin: 6px 0;
+}
+
+ul#garden-list a {
+  color: #3498db;
+  font-weight: 600;
+  text-decoration: none;
+}
+ul#garden-list a:hover {
+  text-decoration: underline;
+}
+
+#toggle-theme {
+  margin-top: 16px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #292e3d;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#toggle-theme:hover {
+  background-color: #5d946d;
+}
+
+.delete-btn {
+  background-color: #eb3723;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
 }
