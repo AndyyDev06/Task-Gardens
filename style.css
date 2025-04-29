@@ -48,6 +48,9 @@ body {
   border: 4px solid #ddd;
   box-sizing: border-box;
   border-radius: 16px;
+  
+  overflow: scroll;
+  scroll-behavior: smooth;
 }
 
 .task {
@@ -198,5 +201,5 @@ button.color-button:hover {
   background-color: goldenrod;
 }
 .plant-option.darkgreen {
-  background-color: #006400;
+  background-color: #228b22;
 }

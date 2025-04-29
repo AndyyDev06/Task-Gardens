@@ -1,3 +1,8 @@
+When making a task it changes the most recent made task colors text
+	to black. therefore the white text then turns white?
+	
+Change Dark Green to #228B22: Fix it not changing in the Workspace.
+
 FIX THE POINTS MULTIPLIER SYSTEM
 
 Fix Animations for changing themes

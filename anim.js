@@ -8,7 +8,7 @@ const savedTheme = localStorage.getItem("taskGardenTheme");
 if (savedTheme === "dark") {
   lightTheme.disabled = true;
   darkTheme.disabled = false;
-  toggleBtn.textContent = "Back to Light";
+  toggleBtn.textContent = "Toggle Theme";
 }
 
 toggleBtn.addEventListener("click", () => {
