@@ -10,7 +10,9 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  overflow: hidden;
+
+  overflow: scroll;
+  scroll-behavior: smooth;
 }
 
 .title {
@@ -48,9 +50,6 @@ body {
   border: 4px solid #ddd;
   box-sizing: border-box;
   border-radius: 16px;
-  
-  overflow: scroll;
-  scroll-behavior: smooth;
 }
 
 .task {

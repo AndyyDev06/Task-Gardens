@@ -103,7 +103,7 @@ garden.addEventListener("click", function (e) {
 function createTaskElement(data, rect) {
   const task = document.createElement("div");
   task.className = "task";
-  
+
   // If task color is white, add 'white' class for black text
   if (data.color.toLowerCase() === "white") {
     task.classList.add("white");
