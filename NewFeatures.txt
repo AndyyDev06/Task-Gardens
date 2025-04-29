@@ -13,3 +13,6 @@ Add a color wheel
 Allow Photo Backgrounds
 
 Fix Garden Centering on the screen.
+
+Finalize Implimenting Scroll Ability.
+	Dont want to extend the garden as that will be a IAP
