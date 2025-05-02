@@ -1,9 +1,4 @@
-When making a task it changes the most recent made task colors text
-	to black. therefore the white text then turns white?
-	
 Change Dark Green to #228B22: Fix it not changing in the Workspace.
-
-FIX THE POINTS MULTIPLIER SYSTEM
 
 Fix Animations for changing themes
 
@@ -13,8 +8,13 @@ Add a color wheel
 Allow Photo Backgrounds
 
 Fix Garden Centering on the screen.
-
-Finalize Implimenting Scroll Ability.
-	Dont want to extend the garden as that will be a IAP
 	
 Work On Adding Changes To Style.css that are in style2.css
+
+Work on refining.
+
+Work on The Workspace name being the same as the Workspace title
+
+Work On Marketing the App, on Reddit dev pages, and tiktok pages.
+
+GOAL 2K MONTHLY USERS.

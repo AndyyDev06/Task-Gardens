@@ -20,6 +20,8 @@ Built with **HTML, CSS, and JavaScript**, Task Gardens blends simplicity with sa
   - In-app purchase (IAP) Garden Styles!
   - Watering and animations
   - Multiplayer or shared gardens
+ 
+  - Please Keep in mind Task Gardens is only in its MVP state right now, it is only a week old with a few hours of work.
 
 ---
 

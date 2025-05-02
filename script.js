@@ -62,8 +62,16 @@ function selectTaskColor(color, cost) {
 function resetButtonTextColors() {
   const buttons = document.querySelectorAll(".plant-option");
   buttons.forEach((button) => {
-    button.style.color = "#FFFFFF"; // Reset to default text color
+    if (!button.classList.contains("white")) {
+      button.style.color = "#FFFFFF";
+    }
   });
+
+  // Always keep the white button text black
+  const whiteButton = document.getElementById("white");
+  if (whiteButton) {
+    whiteButton.style.color = "#000000";
+  }
 }
 
 garden.addEventListener("click", function (e) {
@@ -88,7 +96,7 @@ garden.addEventListener("click", function (e) {
       color: pendingColor,
       relX: x / rect.width,
       relY: y / rect.height,
-      points: pendingCost > 0 ? pendingCost : 10,
+      points: pendingCost > 0 ? pendingCost + 5 : 10,
       grown: false,
     };
 
