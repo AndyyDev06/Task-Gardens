@@ -46,3 +46,15 @@ button.onclick = () => {
 };
 
 loadGardens();
+
+const showTutorialBtn = document.getElementById("show-tutorial");
+const closeTutorialBtn = document.getElementById("close-tutorial");
+const tutorialModal = document.getElementById("tutorial-modal");
+
+showTutorialBtn.onclick = () => {
+  tutorialModal.classList.remove("hidden");
+};
+
+closeTutorialBtn.onclick = () => {
+  tutorialModal.classList.add("hidden");
+};
