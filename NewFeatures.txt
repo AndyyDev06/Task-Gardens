@@ -4,11 +4,11 @@ Fix Animations for changing themes
 
 Add a color wheel
 	all for saving of favorite colors
-	
+
 Allow Photo Backgrounds
 
 Fix Garden Centering on the screen.
-	
+
 Work On Adding Changes To Style.css that are in style2.css
 
 Work on refining.
@@ -16,5 +16,7 @@ Work on refining.
 Work on The Workspace name being the same as the Workspace title
 
 Work On Marketing the App, on Reddit dev pages, and tiktok pages.
+
+Fix Problems with git commits
 
 GOAL 2K MONTHLY USERS.
