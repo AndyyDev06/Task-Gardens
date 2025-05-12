@@ -16,33 +16,7 @@
         <button id="toggle-theme">Toggle Theme</button>
       </div>
 
-      <!--Plant Options Bar-->
-      <div class="plant-bar">
-        <button
-          class="plant-option white"
-          onclick="selectTaskColor('White', 0)"
-        >
-          White Task (0)
-        </button>
-        <button class="plant-option red" onclick="selectTaskColor('Red', 5)">
-          Red Task (5)
-        </button>
-        <button class="plant-option blue" onclick="selectTaskColor('Blue', 10)">
-          Blue Task (10)
-        </button>
-        <button
-          class="plant-option yellow"
-          onclick="selectTaskColor('goldenrod', 15)"
-        >
-          Yellow Task (15)
-        </button>
-        <button
-          class="plant-option darkgreen"
-          onclick="selectTaskColor('Green', 20)"
-        >
-          Green Task (20)
-        </button>
-      </div>
+      <!-- Removed Plant Options Bar -->
 
       <div id="garden" class="garden"></div>
 
@@ -52,7 +26,24 @@
         <button onclick="completeTask()">Complete</button>
         <button onclick="removeTask()">Remove</button>
       </div>
+
+  <div id="task-form" class="hidden">
+  <div class="task-form">
+    <h3>Create a Task</h3>
+    <input type="text" id="task-name" placeholder="Task name" />
+    <select id="task-color">
+      <option value="white" data-cost="0">White (Free)</option>
+      <option value="red" data-cost="5">Red (5 pts)</option>
+      <option value="blue" data-cost="10">Blue (10 pts)</option>
+      <option value="goldenrod" data-cost="15">Yellow (15 pts)</option>
+      <option value="green" data-cost="20">Green (20 pts)</option>
+    </select>
+    <div class="modal-buttons">
+      <button onclick="confirmTask()">Plant</button>
+      <button onclick="cancelTaskForm()" class="cancel">Cancel</button>
     </div>
+  </div>
+</div>
 
     <script src="anim.js"></script>
     <script src="script.js" defer></script>

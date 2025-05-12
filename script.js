@@ -9,69 +9,11 @@ let points = 0;
 let selectedTask = null;
 let taskMenu = document.getElementById("task-menu");
 
-let pendingTask = false;
-let pendingTaskName = "";
-let pendingColor = "white";
-let pendingCost = 0;
+let clickX = 0;
+let clickY = 0;
 
 function updatePointsDisplay() {
   document.getElementById("points").innerText = "Points: " + points;
-}
-
-function createTask() {
-  const name = prompt("Enter your task name:");
-  if (!name) return;
-  pendingTaskName = name;
-  pendingColor = "white"; // Default to white task
-  pendingCost = 0;
-  pendingTask = true;
-  garden.style.cursor = "crosshair";
-
-  // Reset all button text colors before setting white text color
-  resetButtonTextColors();
-
-  // Set the white task button text color to black
-  const whiteButton = document.getElementById("white");
-  whiteButton.style.color = "#000000";
-}
-
-function selectTaskColor(color, cost) {
-  if (points < cost) {
-    alert(`You need ${cost} points for this task.`);
-    return;
-  }
-
-  const name = prompt(`Enter your ${color} task name:`);
-  if (!name) return;
-
-  pendingTaskName = name;
-  pendingColor = color;
-  pendingCost = cost;
-  pendingTask = true;
-  garden.style.cursor = "crosshair";
-
-  // Reset all button text colors before setting the selected color
-  resetButtonTextColors();
-
-  // Set the selected button text color to black based on the selected task color
-  const selectedButton = document.querySelector(`.plant-option.${color}`);
-  selectedButton.style.color = "#000000";
-}
-
-// Function to reset the button text colors
-function resetButtonTextColors() {
-  const buttons = document.querySelectorAll(".plant-option");
-  buttons.forEach((button) => {
-    if (!button.classList.contains("white")) {
-      button.style.color = "#FFFFFF";
-    }
-  });
-
-  // Always keep the white button text black
-  const whiteButton = document.getElementById("white");
-  if (whiteButton) {
-    whiteButton.style.color = "#000000";
-  }
 }
 
 garden.addEventListener("click", function (e) {
@@ -79,50 +21,53 @@ garden.addEventListener("click", function (e) {
   hideMenu();
 
   const rect = garden.getBoundingClientRect();
-  let x = e.clientX - rect.left;
-  let y = e.clientY - rect.top;
+  clickX = e.clientX - rect.left;
+  clickY = e.clientY - rect.top;
 
-  x = Math.max(0, Math.min(x, rect.width));
-  y = Math.max(0, Math.min(y, rect.height));
-
-  if (pendingTask) {
-    if (pendingCost > 0) {
-      points -= pendingCost;
-      updatePointsDisplay();
-    }
-
-    const taskData = {
-      name: pendingTaskName,
-      color: pendingColor,
-      relX: x / rect.width,
-      relY: y / rect.height,
-      points: pendingCost > 0 ? pendingCost + 5 : 10,
-      grown: false,
-    };
-
-    createTaskElement(taskData, rect);
-
-    // Save to localStorage
-    saveTasks();
-
-    // Reset
-    pendingTask = false;
-    pendingTaskName = "";
-    pendingColor = "white";
-    pendingCost = 0;
-    garden.style.cursor = "default";
-  }
+  document.getElementById("task-form").classList.remove("hidden");
 });
+
+function confirmTask() {
+  const name = document.getElementById("task-name").value.trim();
+  const select = document.getElementById("task-color");
+  const color = select.value;
+  const cost = parseInt(select.options[select.selectedIndex].dataset.cost);
+
+  if (!name) return alert("Please enter a task name.");
+  if (points < cost) return alert("Not enough points.");
+
+  const rect = garden.getBoundingClientRect();
+  const relX = clickX / rect.width;
+  const relY = clickY / rect.height;
+
+  const taskData = {
+    name,
+    color,
+    relX,
+    relY,
+    points: cost > 0 ? cost + 5 : 10,
+    grown: false,
+  };
+
+  points -= cost;
+  updatePointsDisplay();
+  createTaskElement(taskData, rect);
+  saveTasks();
+  cancelTaskForm();
+}
+
+function cancelTaskForm() {
+  document.getElementById("task-form").classList.add("hidden");
+  document.getElementById("task-name").value = "";
+  document.getElementById("task-color").value = "white";
+}
 
 function createTaskElement(data, rect) {
   const task = document.createElement("div");
   task.className = "task";
-
-  // If task color is white, add 'white' class for black text
   if (data.color.toLowerCase() === "white") {
     task.classList.add("white");
   }
-
   task.innerText = data.name + (data.grown ? " (✓)" : "");
   if (data.grown) task.classList.add("grown");
   task.style.backgroundColor = data.color;
@@ -145,8 +90,10 @@ function createTaskElement(data, rect) {
 
 function showMenu(task) {
   selectedTask = task;
-  taskMenu.style.left = task.style.left;
-  taskMenu.style.top = task.style.top;
+  const rect = task.getBoundingClientRect();
+
+  taskMenu.style.left = `${rect.left + window.scrollX}px`;
+  taskMenu.style.top = `${rect.top + window.scrollY}px`;
   taskMenu.classList.remove("hidden");
 }
 
