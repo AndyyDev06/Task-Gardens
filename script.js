@@ -8,9 +8,14 @@ let garden = document.getElementById("garden");
 let points = 0;
 let selectedTask = null;
 let taskMenu = document.getElementById("task-menu");
-
 let clickX = 0;
 let clickY = 0;
+
+// Set garden title to emoji + name
+const gardenTitle = document.querySelector(".title");
+if (gardenTitle) {
+  gardenTitle.textContent = `🌿 ${gardenName} 🌿`;
+}
 
 function updatePointsDisplay() {
   document.getElementById("points").innerText = "Points: " + points;
@@ -68,6 +73,7 @@ function createTaskElement(data, rect) {
   if (data.color.toLowerCase() === "white") {
     task.classList.add("white");
   }
+
   task.innerText = data.name + (data.grown ? " (✓)" : "");
   if (data.grown) task.classList.add("grown");
 
@@ -86,6 +92,7 @@ function createTaskElement(data, rect) {
   task.dataset.grown = data.grown;
 
   task.addEventListener("mousedown", dragStart);
+  task.addEventListener("touchstart", dragStart);
 
   task.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -98,7 +105,6 @@ function createTaskElement(data, rect) {
 function showMenu(task) {
   selectedTask = task;
   const rect = task.getBoundingClientRect();
-
   taskMenu.style.left = `${rect.left + window.scrollX}px`;
   taskMenu.style.top = `${rect.top + window.scrollY}px`;
   taskMenu.classList.remove("hidden");
@@ -187,30 +193,41 @@ window.addEventListener("resize", () => {
   });
 });
 
+// Load saved tasks and points
 loadTasks();
 updatePointsDisplay();
 
-// Drag logic
+// 🔄 Dragging support for both desktop and mobile
 let draggedTask = null;
 let offsetX = 0;
 let offsetY = 0;
 
 function dragStart(e) {
   draggedTask = e.target;
+
   const rect = draggedTask.getBoundingClientRect();
-  offsetX = e.clientX - rect.left;
-  offsetY = e.clientY - rect.top;
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+  offsetX = clientX - rect.left;
+  offsetY = clientY - rect.top;
 
   document.addEventListener("mousemove", dragMove);
   document.addEventListener("mouseup", dragEnd);
+  document.addEventListener("touchmove", dragMove, { passive: false });
+  document.addEventListener("touchend", dragEnd);
 }
 
 function dragMove(e) {
   if (!draggedTask) return;
+  e.preventDefault();
 
   const gardenRect = garden.getBoundingClientRect();
-  let x = e.clientX - gardenRect.left - offsetX;
-  let y = e.clientY - gardenRect.top - offsetY;
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+  let x = clientX - gardenRect.left - offsetX;
+  let y = clientY - gardenRect.top - offsetY;
 
   x = Math.max(0, Math.min(x, gardenRect.width - draggedTask.offsetWidth));
   y = Math.max(0, Math.min(y, gardenRect.height - draggedTask.offsetHeight));
@@ -229,4 +246,6 @@ function dragEnd() {
   draggedTask = null;
   document.removeEventListener("mousemove", dragMove);
   document.removeEventListener("mouseup", dragEnd);
+  document.removeEventListener("touchmove", dragMove);
+  document.removeEventListener("touchend", dragEnd);
 }
