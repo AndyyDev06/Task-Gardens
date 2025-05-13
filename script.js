@@ -1,9 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
 const gardenName = urlParams.get("garden") || "default";
-const gardenTitle = document.getElementById("garden-title");
-if (gardenTitle && gardenName) {
-  gardenTitle.textContent = `🌿 ${gardenName} 🌿`;
-}
 
 const TASKS_KEY = `taskGardenTasks__${gardenName}`;
 const POINTS_KEY = `taskGardenPoints__${gardenName}`;
@@ -74,15 +70,22 @@ function createTaskElement(data, rect) {
   }
   task.innerText = data.name + (data.grown ? " (✓)" : "");
   if (data.grown) task.classList.add("grown");
+
+  const x = rect.width * data.relX;
+  const y = rect.height * data.relY;
+
   task.style.backgroundColor = data.color;
-  task.style.left = `${rect.width * data.relX}px`;
-  task.style.top = `${rect.height * data.relY}px`;
+  task.style.left = `${x}px`;
+  task.style.top = `${y}px`;
+
   task.dataset.relativeX = data.relX;
   task.dataset.relativeY = data.relY;
   task.dataset.pointsOnComplete = data.points;
   task.dataset.name = data.name;
   task.dataset.color = data.color;
   task.dataset.grown = data.grown;
+
+  task.addEventListener("mousedown", dragStart);
 
   task.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -186,3 +189,44 @@ window.addEventListener("resize", () => {
 
 loadTasks();
 updatePointsDisplay();
+
+// Drag logic
+let draggedTask = null;
+let offsetX = 0;
+let offsetY = 0;
+
+function dragStart(e) {
+  draggedTask = e.target;
+  const rect = draggedTask.getBoundingClientRect();
+  offsetX = e.clientX - rect.left;
+  offsetY = e.clientY - rect.top;
+
+  document.addEventListener("mousemove", dragMove);
+  document.addEventListener("mouseup", dragEnd);
+}
+
+function dragMove(e) {
+  if (!draggedTask) return;
+
+  const gardenRect = garden.getBoundingClientRect();
+  let x = e.clientX - gardenRect.left - offsetX;
+  let y = e.clientY - gardenRect.top - offsetY;
+
+  x = Math.max(0, Math.min(x, gardenRect.width - draggedTask.offsetWidth));
+  y = Math.max(0, Math.min(y, gardenRect.height - draggedTask.offsetHeight));
+
+  draggedTask.style.left = `${x}px`;
+  draggedTask.style.top = `${y}px`;
+
+  draggedTask.dataset.relativeX = x / gardenRect.width;
+  draggedTask.dataset.relativeY = y / gardenRect.height;
+}
+
+function dragEnd() {
+  if (draggedTask) {
+    saveTasks();
+  }
+  draggedTask = null;
+  document.removeEventListener("mousemove", dragMove);
+  document.removeEventListener("mouseup", dragEnd);
+}
