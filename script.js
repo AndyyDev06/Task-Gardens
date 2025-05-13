@@ -1,5 +1,9 @@
 const urlParams = new URLSearchParams(window.location.search);
 const gardenName = urlParams.get("garden") || "default";
+const gardenTitle = document.getElementById("garden-title");
+if (gardenTitle && gardenName) {
+  gardenTitle.textContent = `🌿 ${gardenName} 🌿`;
+}
 
 const TASKS_KEY = `taskGardenTasks__${gardenName}`;
 const POINTS_KEY = `taskGardenPoints__${gardenName}`;
