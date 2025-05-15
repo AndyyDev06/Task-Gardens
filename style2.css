@@ -34,6 +34,24 @@ body {
   margin-bottom: 20px; /* Add this line */
 }
 
+#reset-tasks {
+  margin-top: 8px;
+  margin-left: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #eb3723;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#reset-tasks:hover {
+  background-color: #c0392b;
+}
+
 #white {
   padding: 10px 16px;
   font-size: 14px;

@@ -115,6 +115,19 @@ function hideMenu() {
   taskMenu.classList.add("hidden");
 }
 
+document.getElementById("reset-tasks").addEventListener("click", () => {
+  if (!confirm("Are you sure you want to reset all task progress?")) return;
+
+  const tasks = document.querySelectorAll(".task");
+  tasks.forEach((task) => {
+    task.classList.remove("grown");
+    task.innerText = task.dataset.name;
+    task.dataset.grown = "false";
+  });
+
+  saveTasks();
+});
+
 function editTask() {
   if (!selectedTask) return;
   const newName = prompt(
