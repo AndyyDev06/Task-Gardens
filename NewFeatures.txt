@@ -21,4 +21,4 @@ Fix Problems with git commits
 
 GOAL 2K MONTHLY USERS.
 
-make it so tasks can be reset daily for ruitine tasks
+make it so tasks can be reset daily for ruitine tasks????
